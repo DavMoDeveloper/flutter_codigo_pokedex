@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_codigo_pokedex/data/data.dart';
 import 'package:flutter_codigo_pokedex/models/pokemon.dart';
 import 'package:flutter_codigo_pokedex/ui/widgets/item_pokemon_widget.dart';
 import 'package:http/http.dart' as http;
@@ -31,7 +32,9 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     // TODO: implement initState
-    getDataPokemon();
+    //getDataPokemon();
+    pokemonsModel= Data().getData.map<Pokemon>((e) => Pokemon.fromJSON(e)).toList();
+    print(pokemonsModel);
     super.initState();
   }
 

@@ -3,10 +3,9 @@ import 'package:flutter_codigo_pokedex/models/pokemon.dart';
 import 'package:flutter_codigo_pokedex/ui/general/colors.dart';
 import 'package:flutter_codigo_pokedex/ui/widgets/item_data_widget.dart';
 import 'package:flutter_codigo_pokedex/ui/widgets/item_type_widget.dart';
+import 'package:flutter_codigo_pokedex/ui/widgets/item_weakeness_widget.dart';
 
 class DetailPage extends StatelessWidget {
-  
-  
   Pokemon pokemon;
   DetailPage({required this.pokemon});
 
@@ -32,9 +31,11 @@ class DetailPage extends StatelessWidget {
           Positioned(
             top: height * 0.1,
             right: -30,
-            child: Image.asset('assets/images/pokeball.png',
-            height: 200,
-            color: Colors.white.withOpacity(0.26),),
+            child: Image.asset(
+              'assets/images/pokeball.png',
+              height: 200,
+              color: Colors.white.withOpacity(0.26),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(20.0),
@@ -56,7 +57,9 @@ class DetailPage extends StatelessWidget {
                       height: 6.0,
                     ),
                     Row(
-                      children: pokemon.type.map((e) => ItemTypeWidget(text: e)).toList(),
+                      children: pokemon.type
+                          .map((e) => ItemTypeWidget(text: e))
+                          .toList(),
                     )
                   ],
                 ),
@@ -108,16 +111,40 @@ class DetailPage extends StatelessWidget {
                             ),
                             ItemDataWidget(
                               title: "Weight",
-                              data: "6.9 kg",
+                              data: pokemon.weight,
                             ),
                             ItemDataWidget(
                               title: "Candy",
-                              data: "Bulbasaur Candy",
+                              data: pokemon.candy,
                             ),
                             ItemDataWidget(
                               title: "Candy Count",
-                              data: "25",
+                              data: pokemon.candyCount,
                             ),
+                            Container(
+                              margin: EdgeInsets.symmetric(
+                                vertical: 6.0,
+                              ),
+                              child: Row(
+                                children: [
+                                  const Text(
+                                    "Weaknesses",
+                                    style: TextStyle(
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 6.0,
+                            ),
+                            Row(
+                              children: pokemon.weaknesses
+                                  .map((e) => ItemWeaknessWidget(text: e))
+                                  .toList(),
+                            )
                           ],
                         ),
                       ),
